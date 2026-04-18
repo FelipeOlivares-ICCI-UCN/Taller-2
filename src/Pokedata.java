@@ -40,6 +40,8 @@ public class Pokedata {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return this.name + "|" + this.totalStats + "|" + this.type;
+    }
 }
