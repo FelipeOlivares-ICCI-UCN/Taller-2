@@ -3,12 +3,11 @@ import java.util.Scanner;
 public class Menu {
     private enum menuStates {START_MENU, EXIT}
 
+    Scanner sc = new Scanner(System.in);
+
 
     private int  selectOption(int max)
     {
-
-
-        Scanner sc = new Scanner(System.in);
 
         while (true)
         {
