@@ -1,12 +1,25 @@
+import java.util.Scanner;
 
 public class Menu {
-    public static void main(String[] args) {
+    public int  selectOption(int max)
+    {
+        Scanner sc = new Scanner(System.in);
 
-        System.out.printf("Hello and welcome!");
+        while (true)
+        {
+            System.out.print(">");
 
-        for (int i = 1; i <= 5; i++) {
+            if (sc.hasNextInt())
+            {
+                int i = sc.nextInt();
 
-            System.out.println("i = " + i);
+                if (0 < i && i <= max)
+                {
+                    return i;
+                }
+            }
+            sc.nextLine();
         }
+
     }
 }
