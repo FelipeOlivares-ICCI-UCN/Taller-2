@@ -40,6 +40,16 @@ public class Pokedex {
     }
 
 
+    public void printPokedex()
+    {
+        for (Pokedata p : pokedex)
+        {
+            System.out.println(p.toString());
+        }
+
+
+    }
+
 
 
 
