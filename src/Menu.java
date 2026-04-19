@@ -79,7 +79,22 @@ public class Menu {
 
 
 
+private boolean hasSavedData()
+{
+    File saveData = new File("./data/Registros.txt");
 
+    if (saveData.exists() && saveData.length() > 0)
+    {
+        return true;
+    }
+
+    else
+    {
+        return false;
+    }
+
+
+}
 
 
 
