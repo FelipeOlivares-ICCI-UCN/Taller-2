@@ -39,6 +39,18 @@ public class Pokedata {
 
     }
 
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public int getTotalStats() {
+        return totalStats;
+    }
+
+    public String getType() {
+        return type;
+    }
 
     @Override
     public String toString() {
