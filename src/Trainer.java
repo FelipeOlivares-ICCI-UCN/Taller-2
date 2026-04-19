@@ -66,6 +66,12 @@ public class Trainer {
         }
     }
 
+    public void addPokemon(Pokemon pk)
+    {
+        TrainerTeam.add(pk);
+
+    }
+
 
     public String getName() {
         return name;
