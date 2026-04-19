@@ -40,6 +40,7 @@ public class Pokedex {
     }
 
 
+    //For debug only;
     public void printPokedex()
     {
         for (Pokedata p : pokedex)
@@ -62,6 +63,43 @@ public class Pokedex {
 
         throw new RuntimeException("El pokemon " + name +  " no existe...");
 
+
+    }
+
+    public ArrayList<String> getLocationPokemons(String location)
+    {
+        ArrayList<String> locationP = new ArrayList<>();
+
+        for (Pokedata p: pokedex)
+        {
+            if (location.equals(p.getLocation()))
+            {
+                locationP.add(p.getName());
+            }
+
+        }
+
+        if (locationP.size() == 0)
+        {
+            throw new RuntimeException("The zone doesnt exist or doesnt have data");
+        }
+
+        return locationP;
+
+
+    }
+
+    public float getApparitionChance(String name)
+    {
+        for (Pokedata p : pokedex)
+        {
+            if (name.equals(p.getName()))
+            {
+                return p.getApparitionChance();
+            }
+        }
+
+        throw new RuntimeException("El pokemon " + name +  " no existe...");
 
     }
 
