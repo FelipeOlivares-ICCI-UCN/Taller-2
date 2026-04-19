@@ -52,6 +52,14 @@ public class Pokedata {
         return type;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public float getApparitionChance() {
+        return apparitionChance;
+    }
+
     @Override
     public String toString() {
         return this.name + "|" + this.totalStats + "|" + this.type;
