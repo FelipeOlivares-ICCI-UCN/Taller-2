@@ -59,18 +59,60 @@ public class Menu {
                         2) Nueva Partida.
                         3) Salir.""");
 
-                int option = selectOption(3);
+                option = selectOption(3);
 
-                if (option == 3)
+                if (option == 1 && hasSavedData())
                 {
-                    return menuStates.EXIT;
+                    player.readSaveData(pokedex);
+                    System.out.println("Saludos " + player.getName() + "!");
+                    return menuStates.MAIN_MENU;
                 }
 
-                else
+                else if (option == 1 && !hasSavedData())
                 {
-                    System.out.println("TBA");
-                    return menuStates.EXIT;
+                    System.out.println("Sin datos guardados...");
+                    return menuStates.START_MENU;
                 }
+
+                else if (option == 2)
+                {
+                    System.out.print("Ingrese su nombre: ");
+                    String name = sc.next();
+
+                    player.newPlayer(name);
+
+                    System.out.println("Bienvenido " + player.getName() + "!");
+
+                    return menuStates.MAIN_MENU;
+                }
+                else if (option == 3) {
+                    return  menuStates.EXIT;
+                }
+
+            case MAIN_MENU:
+                System.out.println("""
+                        Que deseas hacer?
+                        1) Revisar equipo.
+                        2) Salir a capturar.
+                        3) Acceso al PC (cambiar Pokémon del equipo).
+                        4) Retar un gimnasio.
+                        5) Desafío al Alto Mando.
+                        6) Curar Pokémon.
+                        7) Guardar.
+                        8) Guardar y Salir.""");
+
+                option = selectOption(8);
+
+                if (option == 1)
+                {
+                    player.printTeam();
+                    return menuStates.MAIN_MENU;
+
+
+                }
+
+                return menuStates.EXIT;
+
 
             case EXIT:
                 break;
