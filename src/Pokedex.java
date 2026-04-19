@@ -50,6 +50,21 @@ public class Pokedex {
 
     }
 
+    public Pokemon getPokemon(String name)
+    {
+        for (Pokedata p : pokedex)
+        {
+            if (name.equals(p.getName()))
+            {
+                return new Pokemon(p.getName(), p.getTotalStats(), p.getType());
+            }
+        }
+
+        throw new RuntimeException("El pokemon " + name +  " no existe...");
+
+
+    }
+
 
 
 
