@@ -2,8 +2,9 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Menu {
-    private enum menuStates {START_MENU, MAIN_MENU, EXIT}
+    private enum menuStates {START_MENU, MAIN_MENU, HUNT_MENU , EXIT}
     Pokedex pokedex = new Pokedex();
+    Zones zones = new Zones();
     Trainer player = new Trainer();
 
 
@@ -111,7 +112,39 @@ public class Menu {
 
                 }
 
+                else if (option == 2)
+                {
+                    return menuStates.HUNT_MENU;
+
+                }
+
                 return menuStates.EXIT;
+
+            case HUNT_MENU:
+                zones.printZones();
+                option = selectOption(zones.getNumZones());
+
+                Pokemon catched = zones.huntZonePokemon(pokedex, option - 1);
+
+                System.out.println("Encontraste a " + catched.getName());
+
+                System.out.println("""
+                        1) Capturarlo
+                        2) Huir""");
+                option = selectOption(2);
+
+                if (option == 1)
+                {
+                    player.addPokemon(catched);
+                }
+
+                else if (option == 2)
+                {
+                    System.out.println("Huiste de " + catched.getName());
+                }
+
+                return menuStates.MAIN_MENU;
+
 
 
             case EXIT:
