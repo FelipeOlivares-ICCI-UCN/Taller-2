@@ -50,6 +50,7 @@ public class Menu {
 
     private menuStates menuManager(menuStates current)
     {
+        int option;
         switch (current)
         {
             case START_MENU:
