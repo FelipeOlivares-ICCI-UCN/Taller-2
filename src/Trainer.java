@@ -59,9 +59,16 @@ public class Trainer {
 
         }
 
+        int i = 1;
+
         for (Pokemon p : TrainerTeam)
         {
-            System.out.println(p.toString());
+            if (i > 6)
+            {
+                return;
+            }
+            System.out.println(i + ")" + p.toString());
+            i++;
 
         }
     }
