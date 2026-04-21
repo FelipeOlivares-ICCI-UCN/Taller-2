@@ -118,6 +118,19 @@ public class Menu {
 
                 }
 
+                else if (option == 7)
+                {
+                    player.writeSaveData();
+                    return menuStates.MAIN_MENU;
+                }
+
+                else if (option == 8)
+                {
+                    player.writeSaveData();
+                    return menuStates.EXIT;
+
+                }
+
                 return menuStates.EXIT;
 
             case HUNT_MENU:
@@ -142,7 +155,10 @@ public class Menu {
                 if (option == 1)
                 {
                     player.addPokemon(catched);
+
                 }
+
+
 
                 else if (option == 2)
                 {
