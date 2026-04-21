@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class Trainer {
     private String name;
@@ -73,10 +76,46 @@ public class Trainer {
         }
     }
 
+    public void writeSaveData()
+    {
+        try (FileWriter fileWriter = new FileWriter("./data/Registros.txt", false))
+        {
+            fileWriter.write(this.name + ";" + this.medals);
+            for (Pokemon p :TrainerTeam)
+            {
+                fileWriter.write("\n");
+                fileWriter.write(p.getName() + ";" + p.getState());
+            }
+
+
+
+        } catch (IOException e) {
+            System.out.println("No se pudo guardar el archivo...");
+        }
+
+
+    }
+
+
     public void addPokemon(Pokemon pk)
     {
         TrainerTeam.add(pk);
 
+    }
+
+    public boolean wasPokemonCatched(String pkName)
+    {
+        for (Pokemon p :TrainerTeam)
+        {
+            if (pkName.equals(p.getName()))
+            {
+                return true;
+            }
+
+
+        }
+
+        return false;
     }
 
 
