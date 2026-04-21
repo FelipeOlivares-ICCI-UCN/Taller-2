@@ -54,6 +54,6 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return this.name + "|" + this.totalStats + "|" + this.type + "|" + this.getState();
+        return this.name + "|" + this.type + "|Stats totales: " +  this.totalStats ;
     }
 }
