@@ -128,6 +128,12 @@ public class Menu {
 
                 System.out.println("Encontraste a " + catched.getName());
 
+                if (player.wasPokemonCatched(catched.getName()))
+                {
+                    System.out.println("Dado que ya tienes a " + catched.getName() + " lo liberas");
+                    return menuStates.MAIN_MENU;
+                }
+
                 System.out.println("""
                         1) Capturarlo
                         2) Huir""");
