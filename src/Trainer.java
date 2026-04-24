@@ -53,11 +53,13 @@ public class Trainer {
 
     }
 
-    public void printTeam()
+    public void printTeam(boolean printAll)
     {
-        if (TrainerTeam.size() == 0)
+        System.out.println("----------------");
+        if (TrainerTeam.isEmpty())
         {
             System.out.println("Sin pokemons...");
+            System.out.println("----------------");
             return;
 
         }
@@ -66,15 +68,47 @@ public class Trainer {
 
         for (Pokemon p : TrainerTeam)
         {
-            if (i > 6)
-            {
-                return;
+            if (printAll) {
+                if (i > 6) {
+                    return;
+                }
             }
             System.out.println(i + ")" + p.toString());
             i++;
 
         }
+
+        System.out.println("----------------");
     }
+
+    public void swapTeam(int selectedTeamIndex, int selectedBoxIndex)
+    {
+
+
+        if (selectedTeamIndex == selectedBoxIndex)
+        {
+            System.out.println("Error, Mismo indice");
+            return;
+
+        }
+
+
+        selectedBoxIndex--;
+        selectedTeamIndex--;
+
+        Pokemon temp = TrainerTeam.get(selectedBoxIndex);
+
+        TrainerTeam.set(selectedBoxIndex, TrainerTeam.get(selectedTeamIndex));
+        TrainerTeam.set(selectedTeamIndex, temp);
+
+    }
+
+    public int getTeamSize()
+    {
+        return TrainerTeam.size();
+    }
+
+
 
     public void writeSaveData()
     {
@@ -95,6 +129,9 @@ public class Trainer {
 
 
     }
+
+
+
 
 
     public void addPokemon(Pokemon pk)
@@ -121,5 +158,10 @@ public class Trainer {
 
     public String getName() {
         return name;
+    }
+
+    public int getMedals()
+    {
+        return this.medals;
     }
 }
