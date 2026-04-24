@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Menu {
-    private enum menuStates {START_MENU, MAIN_MENU, HUNT_MENU , EXIT}
+    private enum menuStates {START_MENU, MAIN_MENU, HUNT_MENU , EXIT, SWAP_MENU}
     Pokedex pokedex = new Pokedex();
     Zones zones = new Zones();
     Trainer player = new Trainer();
@@ -52,13 +52,16 @@ public class Menu {
     private menuStates menuManager(menuStates current)
     {
         int option;
+        int option2;
         switch (current)
         {
             case START_MENU:
+                System.out.println("----------------");
                 System.out.println("""
                         1) Continuar.
                         2) Nueva Partida.
                         3) Salir.""");
+                System.out.println("----------------");
 
                 option = selectOption(3);
 
@@ -91,8 +94,8 @@ public class Menu {
                 }
 
             case MAIN_MENU:
+                System.out.println("----------------");
                 System.out.println("""
-                        Que deseas hacer?
                         1) Revisar equipo.
                         2) Salir a capturar.
                         3) Acceso al PC (cambiar Pokémon del equipo).
@@ -101,12 +104,14 @@ public class Menu {
                         6) Curar Pokémon.
                         7) Guardar.
                         8) Guardar y Salir.""");
+                System.out.println("----------------");
 
+                System.out.print("Que deseas hacer? ");
                 option = selectOption(8);
 
                 if (option == 1)
                 {
-                    player.printTeam();
+                    player.printTeam(false);
                     return menuStates.MAIN_MENU;
 
 
@@ -116,6 +121,11 @@ public class Menu {
                 {
                     return menuStates.HUNT_MENU;
 
+                }
+
+                else if (option == 3)
+                {
+                    return menuStates.SWAP_MENU;
                 }
 
                 else if (option == 7)
@@ -134,27 +144,34 @@ public class Menu {
                 return menuStates.EXIT;
 
             case HUNT_MENU:
+                System.out.println("----------------");
                 zones.printZones();
+                System.out.println("----------------");
+
                 option = selectOption(zones.getNumZones());
 
                 Pokemon catched = zones.huntZonePokemon(pokedex, option - 1);
 
+                System.out.println("----------------");
                 System.out.println("Encontraste a " + catched.getName());
 
                 if (player.wasPokemonCatched(catched.getName()))
                 {
                     System.out.println("Dado que ya tienes a " + catched.getName() + " lo liberas");
+                    System.out.println("----------------");
                     return menuStates.MAIN_MENU;
                 }
 
                 System.out.println("""
                         1) Capturarlo
                         2) Huir""");
+                System.out.print("Que deseas hacer? ");
                 option = selectOption(2);
-
                 if (option == 1)
                 {
                     player.addPokemon(catched);
+                    System.out.println("Capturas a " + catched.getName());
+                    System.out.println("----------------");
 
                 }
 
@@ -163,9 +180,32 @@ public class Menu {
                 else if (option == 2)
                 {
                     System.out.println("Huiste de " + catched.getName());
+                    System.out.println("----------------");
                 }
 
                 return menuStates.MAIN_MENU;
+
+
+            case SWAP_MENU:
+                if (player.getTeamSize() <= 2)
+                {
+                    System.out.println("Sin suficientes pokemon para cambiar");
+                    return menuStates.MAIN_MENU;
+                }
+
+                player.printTeam(true);
+
+                System.out.print("Seleccione el indice del Pokemon a cambiar: ");
+                option = selectOption(player.getTeamSize());
+
+                System.out.print("Seleccione el indice del Pokemon sustituto: ");
+                option2 = selectOption(player.getTeamSize());
+
+                player.swapTeam(option, option2);
+
+                return menuStates.MAIN_MENU;
+
+
 
 
 
