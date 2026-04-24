@@ -46,7 +46,7 @@ public class Zones {
 
         }
 
-        return pokedex.getPokemon(zonePoke.get(zonePoke.size() - 1));
+        return pokedex.getPokemon(zonePoke.getLast());
 
 
     }
