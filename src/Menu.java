@@ -7,6 +7,8 @@ public class Menu {
     Zones zones = new Zones();
     Trainer player = new Trainer();
 
+    GymManager gymManager = new GymManager(player.getMedals());
+
 
 
     Scanner sc = new Scanner(System.in);
@@ -35,7 +37,6 @@ public class Menu {
 
     public Menu()
     {
-
         menuStates currentState = menuStates.START_MENU;
 
         while (currentState != menuStates.EXIT)
@@ -84,6 +85,7 @@ public class Menu {
                     String name = sc.next();
 
                     player.newPlayer(name);
+                    gymManager = new GymManager(0);
 
                     System.out.println("Bienvenido " + player.getName() + "!");
 
@@ -131,12 +133,14 @@ public class Menu {
                 else if (option == 7)
                 {
                     player.writeSaveData();
+                    gymManager.writeSaveData();
                     return menuStates.MAIN_MENU;
                 }
 
                 else if (option == 8)
                 {
                     player.writeSaveData();
+                    gymManager.writeSaveData();
                     return menuStates.EXIT;
 
                 }
