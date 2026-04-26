@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +27,12 @@ public class GymManager {
 
                 int teamSize = Integer.parseInt(data[3]);
 
-                String[] pokemonNames = GymList.subList(4, 4 + teamSize).toArray(new String[teamSize]);
+                String[] pokemonNames = new String[teamSize];
+
+                for (int i = 0; i < teamSize; i++)
+                {
+                    pokemonNames[i] = data[4 + i];
+                }
 
                 GymList.add(new GymData(gymNumber, gymName, defeatState, pokemonNames));
 
