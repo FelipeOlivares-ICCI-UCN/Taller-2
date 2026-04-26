@@ -1,9 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
 
 
 public class Trainer {
@@ -12,6 +9,42 @@ public class Trainer {
 
     private LinkedList<Pokemon> TrainerTeam = new LinkedList<>();
 
+    public Trainer()
+    {
+        try (Scanner fileReader = new Scanner( new File("./data/Registros.txt")))
+        {
+            String data = "";
+
+            if (fileReader.hasNextLine())
+            {
+                data = fileReader.nextLine();
+
+            }
+
+            if (!data.isBlank())
+            {
+
+                this.name = data.split(";")[0];
+                this.medals = Integer.parseInt(data.split(";")[1]);
+
+            }
+
+            else
+        {
+
+            this.medals = 0;
+
+        }
+
+
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new RuntimeException("Por favor crear archivo vacio llamado Registros.txt en directorio data");
+        }
+
+
+}
 
     public void newPlayer(String name)
     {
@@ -25,8 +58,6 @@ public class Trainer {
         {
             String[] data = fileReader.nextLine().split(";");
 
-            this.name = data[0];
-            this.medals = Integer.parseInt(data[1]);
 
             while (fileReader.hasNextLine())
             {
@@ -112,13 +143,13 @@ public class Trainer {
 
     public void writeSaveData()
     {
-        try (FileWriter fileWriter = new FileWriter("./data/Registros.txt", false))
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("./data/Registros.txt")))
         {
-            fileWriter.write(this.name + ";" + this.medals);
+            bw.write(this.name + ";" + this.medals);
             for (Pokemon p :TrainerTeam)
             {
-                fileWriter.write("\n");
-                fileWriter.write(p.getName() + ";" + p.getState());
+                bw.newLine();
+                bw.write(p.getName() + ";" + p.getState());
             }
 
 
