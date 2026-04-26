@@ -47,5 +47,31 @@ public class GymManager {
         }
     }
 
+    public void writeSaveData()
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("./data/Gimnasios.txt")))
+        {
+            boolean firstLine = true;
+            for (GymData gD : GymList)
+            {
+                if (!firstLine)
+                {
+                    bw.newLine();
+                }
+                bw.write(gD.toString());
+                firstLine = false;
+
+            }
+
+
+
+        } catch (IOException e) {
+            System.out.println("No se pudo guardar el archivo...");
+        }
+
+
+    }
 
 }
+
+
