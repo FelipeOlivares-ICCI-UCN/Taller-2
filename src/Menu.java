@@ -31,6 +31,22 @@ public class Menu {
 
     }
 
+    public Menu()
+    {
+
+        menuStates currentState = menuStates.START_MENU;
+
+        while (currentState != menuStates.EXIT)
+        {
+            currentState = menuManager(currentState);
+
+        }
+        System.out.println("Adios entrenador...");
+
+
+
+    }
+
     
     private menuStates menuManager(menuStates current)
     {
