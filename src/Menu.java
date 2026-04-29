@@ -2,10 +2,12 @@ import java.util.Scanner;
 
 public class Menu {
 
+    private enum menuStates {START_MENU, EXIT}   
+
     private int  selectOption(int max)
     {
 
-        private enum menuStates {START_MENU, EXIT}    
+         
 
         Scanner sc = new Scanner(System.in);
 
