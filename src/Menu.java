@@ -5,6 +5,7 @@ public class Menu {
     private int  selectOption(int max)
     {
 
+        private enum menuStates {START_MENU, EXIT}    
 
         Scanner sc = new Scanner(System.in);
 
@@ -25,4 +26,6 @@ public class Menu {
         }
 
     }
+
+
 }
