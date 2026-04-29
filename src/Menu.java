@@ -2,7 +2,9 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private enum menuStates {START_MENU, EXIT}   
+    private enum menuStates {START_MENU, EXIT}
+    
+       
 
     private int  selectOption(int max)
     {
@@ -28,6 +30,42 @@ public class Menu {
         }
 
     }
+
+    
+    private menuStates menuManager(menuStates current)
+    {
+        switch (current)
+        {
+            case START_MENU:
+                System.out.println("""
+                        1) Continuar.
+                        2) Nueva Partida.
+                        3) Salir.""");
+
+                int option = selectOption(3);
+
+                if (option == 3)
+                {
+                    return menuStates.EXIT;
+                }
+
+                else
+                {
+                    System.out.println("TBA");
+                    return menuStates.EXIT;
+                }
+
+            case EXIT:
+                break;
+
+
+
+        }
+
+        System.out.println("Estado invalido. Saliendo del juego...");
+        return menuStates.EXIT;
+    }
+
 
 
 }
