@@ -28,4 +28,9 @@ public class CapturedPokemon extends Pokemon {
     {
         return (isKnocked) ? "Debilitado" : "Vivo";
     }
+
+    @Override
+    public String toString() {
+        return name + "|" + getCombatState();
+    }
 }

@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +20,6 @@ public class PC {
             }
             combatTeam.add(pokemon);
             i++;
-
-
         }
 
         return null;
@@ -29,6 +30,34 @@ public class PC {
     {
         return PCPokemons.isEmpty();
     }
+
+    public void addCapturedPokemon(CapturedPokemon pk)
+    {
+        PCPokemons.add(pk);
+
+    }
+
+    public void saveData()
+    {
+        try( BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./data/Registros.txt", true)))
+        {
+
+            for (CapturedPokemon pk: PCPokemons)
+            {
+                bufferedWriter.newLine();
+                bufferedWriter.write(pk.getName() + ";" + pk.getCombatState());
+            }
+
+
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
 
 
 

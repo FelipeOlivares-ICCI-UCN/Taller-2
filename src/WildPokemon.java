@@ -12,4 +12,13 @@ public class WildPokemon extends Pokemon {
         return this.apparitionChance;
     }
 
+    public CapturedPokemon capturePokemon()
+    {
+        return new CapturedPokemon(super.name, super.type, super.totalStats, "Vivo");
+    }
+
+    @Override
+    public String toString() {
+        return super.name + "| "+ super.type + "| "+ super.totalStats + "| "+ this.apparitionChance;
+    }
 }
